@@ -1,4 +1,6 @@
 import React from 'react';
+import { Button, List } from 'antd-mobile';
+// import 'antd-mobile/dist/antd-mobile.css';
 
 class App extends React.Component{
   render(){
@@ -33,16 +35,33 @@ class Yiying extends React.Component{
       solders: [...this.state.solders,'新兵'+Math.random()]
     })
   }
+  componentWillMount(){
+    console.log('组件就要加载了。。')
+  }
+  componentDidMount(){
+    console.log('组件加载完毕。。')
+  }
   render(){
+    console.log('组件就正在加载。。')
     return (
       <div>
         <h2>一营营长,{this.props.laoda}</h2>
-        <button onClick={()=>this.addSolder()}>新兵入伍</button>
-        <ul>
+        <Button type="primary" onClick={()=>this.addSolder()}>新兵入伍</Button>
+        <List renderHeader="士兵列表">
+          {this.state.solders.map(v=>{
+            return(
+              <List.Item key={v}>
+                {v}
+              </List.Item>
+            )
+          })}
+          
+        </List>
+        {/* <ul>
           {this.state.solders.map(v=>{
             return <li key={v}>{v}</li>;
           })}
-        </ul>
+        </ul> */}
       </div>
     )
   }
