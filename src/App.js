@@ -5,7 +5,7 @@ import {addGUN,removeGUN,addGUNAsync} from './index.redux';
 
 @connect(
     //你要state什么属性放到props
-    state=>({num: state}),
+    state=>({num: state.num}),
     //你要什么方法，放到props，自动dispatch 
     {addGUN,removeGUN,addGUNAsync}
 )
