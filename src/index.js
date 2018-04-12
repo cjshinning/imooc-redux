@@ -1,23 +1,15 @@
-import {createStore}  from 'redux';
+import React from 'react'
+import ReactDom from 'react-dom';
+import {createStore} from 'redux';
+import App from './App';
+import {counter} from './index.redux';
 
-function counter(state = 10, action) {
-    switch (action.type) {
-        case 'INCREMENT':
-        return state + 1
-        case 'DECREMENT':
-        return state - 1
-        default:
-        return state
-    }
+const store = createStore(counter);
+
+function render(){
+    ReactDom.render(<App store={store}/>, document.getElementById('root'))
 }
 
-let store = createStore(counter)
+render()
 
-store.subscribe(() =>
-  console.log(store.getState())
-)
-
-store.dispatch({ type: 'INCREMENT' })
-store.dispatch({ type: 'INCREMENT' })
-store.dispatch({ type: 'INCREMENT' })
-store.dispatch({ type: 'DECREMENT' })
+store.subscribe(render);
