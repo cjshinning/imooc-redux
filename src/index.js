@@ -13,7 +13,7 @@ import {Provider} from 'react-redux';
 import reducers from './reducer'
 import Auth from './Auth'
 import Dashboard from './Dashboard'
-
+import './config'
 
 const store = createStore(reducers,compose(
     applyMiddleware(thunk),

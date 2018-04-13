@@ -17,9 +17,6 @@ function Qibinglian(){
 )
 
 class Dashboard extends React.Component{
-    constructor(props){
-        super(props)
-    }
     render(){
         console.log(this.props.match);
         let match = this.props.match;
