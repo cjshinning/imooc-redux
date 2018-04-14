@@ -39,8 +39,8 @@ class Register extends React.Component{
                     <List>
                         {this.props.msg?<p className="error-msg">{this.props.msg}</p>:null}
                         <InputItem onChange={v=>this.handleChange('user',v)}>用户名</InputItem>
-                        <InputItem onChange={v=>this.handleChange('pwd',v)}>密码</InputItem>
-                        <InputItem onChange={v=>this.handleChange('repeatPwd',v)}>确认密码</InputItem>
+                        <InputItem type="password" onChange={v=>this.handleChange('pwd',v)}>密码</InputItem>
+                        <InputItem type="password" onChange={v=>this.handleChange('repeatPwd',v)}>确认密码</InputItem>
                         <RadioItem checked={this.state.type==='genius'} onChange={()=>this.handleChange('type','genius')}>
                             牛人
                         </RadioItem>
