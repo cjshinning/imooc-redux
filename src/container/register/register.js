@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect } from 'react-router'
 import Logo from '../../component/logo/logo'
 import { List, InputItem, Radio, WingBlank, WhiteSpace, Button } from 'antd-mobile';
 import {connect} from 'react-redux'
@@ -26,14 +27,13 @@ class Register extends React.Component{
         })
     }
     handleRegister(){
-        console.log(this.state)
-        console.log(this.props.msg)
         this.props.register(this.state)
     }
     render(){
         const RadioItem = Radio.RadioItem;
         return  (
             <div>
+                {this.props.redirectTo ? <Redirect to={this.props.redirectTo} />:null}
                 <Logo />
                 <WingBlank>
                     <List>
