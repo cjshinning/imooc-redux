@@ -8,3 +8,4 @@ export function getRedirectPath({type, avatar}){
     }
     return url
 }
+
