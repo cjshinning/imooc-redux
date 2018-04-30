@@ -19,6 +19,7 @@ const models = {
         'title': {type: String},
         // 如果是boss，还有两个字段
         'money': {type: String},
+        'company': {type: String}
     },
     chart: {
 
