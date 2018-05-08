@@ -26,7 +26,7 @@ export function user(state=initState,action){
         default:
             return state
     }
-    return state
+    // return state
 }
 
 function authSuccess(obj){

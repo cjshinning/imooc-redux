@@ -1,13 +1,14 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import { NavBar } from 'antd-mobile'
-import {Route,Switch,withRouter} from 'react-router-dom'
+import {Route} from 'react-router-dom'
 import NavLinkBar from '../navlink/navlink'
 import Boss from '../boss/boss'
 import Genius from '../genius/genius'
 import User from '../user/user'
 import Msg from '../msg/msg'
-import {getMsgList,sendMsg,recvMsg} from '../../redux/chat.redux'
+import {getMsgList,recvMsg} from '../../redux/chat.redux'
+import QueueAnim from 'rc-queue-anim'
 
 // function Boss(){
 //     return <h2>Boss首页</h2> 
@@ -73,15 +74,23 @@ class Dashboard extends React.Component{
                 component:User
             }
         ]
+        const page = navList.find(v=>v.path==pathname)
+        console.log(page)
+        // 让动画生效，只渲染一个router，根据当前的path决定组件
         return (
             <div>
                 <NavBar className='fixd-header' mode='dard'>{navList.find(v=>v.path==pathname).title}</NavBar>
                 <div style={{marginTop:45}}>
-                    <Switch>
-                        {navList.map(v=>(
-                            <Route key={v.path} path={v.path} component={v.component}></Route>
-                        ))}
-                    </Switch>
+                    {/* <QueueAnim type='scaleX' duration={800}>
+                        <Switch>
+                            {navList.map(v=>(
+                                <Route key={v.path} path={v.path} component={v.component}></Route>
+                            ))}
+                        </Switch>
+                    </QueueAnim> */}
+                    <QueueAnim type='scaleX' duration={800}>
+                        <Route key={page.path} path={page.path} component={page.component}></Route>
+                    </QueueAnim>
                 </div>
                 <NavLinkBar data={navList}></NavLinkBar>
             </div>

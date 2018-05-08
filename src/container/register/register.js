@@ -4,7 +4,6 @@ import Logo from '../../component/logo/logo'
 import { List, InputItem, Radio, WingBlank, WhiteSpace, Button } from 'antd-mobile';
 import {connect} from 'react-redux'
 import {register} from '../../redux/user.redux'
-import imoocForm from '../../component/imooc-form/imooc-form'
 
 @connect(
     state=>state.user,

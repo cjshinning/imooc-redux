@@ -43,17 +43,47 @@ function msgRead({from,userid,num}){
     return {type:MSG_READ, payload:{from,userid,num}}
 }
 
+// callback
+// callback hell
+// setTimeout(()=>{
+//     setTimeout(()=>{
+//         setTimeout(()=>{
+//             console.log(1)
+//         },1000)
+//     },1000)
+// },1000)
+
+// promise
+// axios.post().then(res=>{
+//     return xx
+// }).then(res=>{
+//     return axios.post
+// })
+
+// async+await配合使用，await必须在async内部
+
+// export function readMsg(from){
+//     return (dispatch,getState)=>{
+//         axios.post('/user/readmsg',{from})
+//             .then(res=>{
+//                 const userid = getState().user._id
+//                 if(res.status==200 && res.data.code==0){
+//                     dispatch(msgRead({userid,from,num:res.data.num}))
+//                 }
+//             })
+//     }
+// }
+
 export function readMsg(from){
-    return (dispatch,getState)=>{
-        axios.post('/user/readmsg',{from})
-            .then(res=>{
-                const userid = getState().user._id
-                if(res.status==200 && res.data.code==0){
-                    dispatch(msgRead({userid,from,num:res.data.num}))
-                }
-            })
+    return async (dispatch,getState)=>{
+        const res = await axios.post('/user/readmsg',{from})
+        const userid = getState().user._id
+        if(res.status==200 && res.data.code==0){
+            dispatch(msgRead({userid,from,num:res.data.num}))
+        }
     }
 }
+
 
 export function recvMsg(){
     return (dispatch,getState)=>{

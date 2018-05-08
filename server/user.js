@@ -31,6 +31,24 @@ Router.get('/getmsglist', function(req,res){
     })
 })
 
+// 测试jsonp
+Router.get('/getmsglist2', function(req,res){
+    const user = req.cookies.userid
+    // '$or:[{from:user,to:user}]'
+    User.find({},function(e,userDoc){
+        let users = {}
+        userDoc.forEach(v=>{
+            users[v._id] = {name:v.user,avatar:v.avatar}
+        })
+        Chat.find({'$or':[{from:user},{to:user}]},function(err,doc){
+            if(!err){
+                // return (callback + "(" + res.json({code:0,msgs:doc,users:users}) + ")")
+                return res.jsonp({code:0,msgs:doc,users:users})
+            }
+        })
+    })
+})
+
 Router.post('/readmsg', function(req,res){
     const userid = req.cookies.userid
     const {from} = req.body
